@@ -1,5 +1,8 @@
 import 'dart:math' as math;
+import 'package:afreximbank/utils/functions/random_strings.dart';
+import 'package:afreximbank/utils/functions/router/main.dart';
 import 'package:afreximbank/widgets/components/buttons/home.dart';
+import 'package:afreximbank/widgets/screens/check_in/main.dart';
 import 'package:flutter/material.dart';
 
 class AfreximHomeScreenWidget extends StatefulWidget {
@@ -14,9 +17,12 @@ class AfreximHomeScreenWidgetState extends State<AfreximHomeScreenWidget> {
   Widget build(BuildContext context) {
     double homeCardWidth = MediaQuery.of(context).size.width > 700
         ? 628.0
-        : MediaQuery.of(context).size.width - 80.0;
+        : MediaQuery.of(context).size.width > 500
+            ? MediaQuery.of(context).size.width - 80.0
+            : MediaQuery.of(context).size.width - 35;
 
     return SingleChildScrollView(
+      key: Key(generateRandomString(10).toString()),
       child: Container(
         height: MediaQuery.of(context).size.height,
         decoration: const BoxDecoration(
@@ -77,8 +83,8 @@ class AfreximHomeScreenWidgetState extends State<AfreximHomeScreenWidget> {
                       height: 100,
                       fit: BoxFit.cover,
                     ),
-                    const SizedBox(
-                      height: 55,
+                    SizedBox(
+                      height: MediaQuery.of(context).size.width > 500 ? 55 : 35,
                     ),
                     Card(
                       shape: RoundedRectangleBorder(
@@ -105,23 +111,30 @@ class AfreximHomeScreenWidgetState extends State<AfreximHomeScreenWidget> {
                         child: Column(
                           children: <Widget>[
                             Container(
-                              width: homeCardWidth - 101,
-                              height: 74,
-                              margin:
-                                  const EdgeInsets.symmetric(vertical: 40.0),
+                              width: MediaQuery.of(context).size.width > 500
+                                  ? homeCardWidth - 101
+                                  : homeCardWidth - 50.5,
+                              height: MediaQuery.of(context).size.width > 500
+                                  ? 74
+                                  : 55,
+                              margin: EdgeInsets.symmetric(
+                                  vertical:
+                                      MediaQuery.of(context).size.width > 500
+                                          ? 40.0
+                                          : 30),
                               decoration: const BoxDecoration(
                                 borderRadius:
                                     BorderRadius.all(Radius.circular(5)),
                                 color: Color.fromRGBO(246, 246, 246, 1),
                               ),
-                              child:  Center(
+                              child: Center(
                                 child: Text(
                                   'SELECT THE STATION FOR THIS DEVICE',
                                   textAlign: TextAlign.center,
                                   style: TextStyle(
                                     color: const Color.fromRGBO(1, 172, 140, 1),
                                     fontFamily: 'Sofia Pro',
-                                    fontSize: ((homeCardWidth-10)*0.04),
+                                    fontSize: ((homeCardWidth - 10) * 0.04),
                                     letterSpacing: 0,
                                     fontWeight: FontWeight.bold,
                                     height: 2,
@@ -131,20 +144,48 @@ class AfreximHomeScreenWidgetState extends State<AfreximHomeScreenWidget> {
                               ),
                             ),
                             HomeScreenBtn(
-                              title: "MAIN ENTRANCE",
-                              onPressed: () {},
+                              title: "Main Entrance".toUpperCase(),
+                              onPressed: () async {
+                                await ufRouter(context,
+                                    screen: CheckInScreen(
+                                      key: Key(
+                                          generateRandomString(10).toString()),
+                                      location: 'Main Entrance',
+                                    ));
+                              },
                             ),
                             HomeScreenBtn(
-                              title: "MEETING ROOM 1",
-                              onPressed: () {},
+                              title: "Vip Entrance".toUpperCase(),
+                              onPressed: () async {
+                                await ufRouter(context,
+                                    screen: CheckInScreen(
+                                      key: Key(
+                                          generateRandomString(10).toString()),
+                                      location: 'Vip Entrance',
+                                    ));
+                              },
                             ),
                             HomeScreenBtn(
-                              title: "MEETING ROOM 2",
-                              onPressed: () {},
+                              title: "Commitee Room 1".toUpperCase(),
+                              onPressed: () async {
+                                await ufRouter(context,
+                                    screen: CheckInScreen(
+                                      key: Key(
+                                          generateRandomString(10).toString()),
+                                      location: 'Commitee Room 1',
+                                    ));
+                              },
                             ),
                             HomeScreenBtn(
-                              title: "MEETING ROOM 3",
-                              onPressed: () {},
+                              title: "Commitee Room 2".toUpperCase(),
+                              onPressed: () async {
+                                await ufRouter(context,
+                                    screen: CheckInScreen(
+                                      key: Key(
+                                          generateRandomString(10).toString()),
+                                      location: 'Commitee Room 2',
+                                    ));
+                              },
                             ),
                           ],
                         ),
@@ -154,29 +195,6 @@ class AfreximHomeScreenWidgetState extends State<AfreximHomeScreenWidget> {
                 ),
               ),
             ),
-            // Positioned(
-            //   top: 55,
-            //   left: (MediaQuery.of(context).size.width / 2) - 50,
-            //   child: Stack(
-            //     children: [
-            //       ClipOval(
-            //         child: Image.asset(
-            //           'assets/images/logo.png',
-            //           width: 100,
-            //           height: 100,
-            //           fit: BoxFit.cover,
-            //         ),
-            //       ),
-            //       Container(
-            //         // color: Colors.amber,
-            //         decoration:
-            //             BoxDecoration(borderRadius: BorderRadius.circular(50)),
-            //         width: 100,
-            //         height: 100,
-            //       ),
-            //     ],
-            //   ),
-            // ),
           ],
         ),
       ),

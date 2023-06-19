@@ -1,0 +1,28 @@
+            
+      fonts:
+    - family: Poppins
+      fonts:
+        - asset: assets/fonts/Poppins-Regular.ttf
+        weight: 400
+      
+      fonts:
+    - family: SofiaPro
+      fonts:
+        - asset: assets/fonts/SofiaPro-Light.ttf- asset: assets/fonts/SofiaPro-Bold.ttf
+        weight: 300weight: 700
+      
+      fonts:
+    - family: SFCompactDisplay
+      fonts:
+        - asset: assets/fonts/SFCompactDisplay-Semibold.ttf
+        weight: normal
+      
+      fonts:
+    - family: Gilroy
+      fonts:
+        - asset: assets/fonts/Gilroy-Regular.ttf- asset: assets/fonts/Gilroy-SemiBold.ttf
+        weight: 400weight: normal
+      
+      dependencies:
+      flutter_svg : ^0.17.4
+          

@@ -1,7 +1,13 @@
+import 'dart:io';
+
 import 'package:afreximbank/widgets/screens/home/main.dart';
 import 'package:flutter/material.dart';
 
+import 'http_override.dart';
+
 void main() {
+  HttpOverrides.global = MyHttpOverrides();
+
   runApp(const MyApp());
 }
 
